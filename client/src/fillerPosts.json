@@ -1,0 +1,14 @@
+[
+    {
+        "itemName": "Lost Wallet",
+        "itemDescription": "Black leather wallet lost near Turlington Hall.",
+        "itemLocation": "Turlington Hall",
+        "postType": "lost"
+    },
+    {
+        "itemName": "Found Sunglasses",
+        "itemDescription": "Ray-Ban sunglasses found on the Reitz Union lawn.",
+        "itemLocation": "Reitz Union",
+        "postType": "found"
+    }
+]

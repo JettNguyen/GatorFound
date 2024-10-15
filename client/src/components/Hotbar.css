@@ -1,0 +1,69 @@
+/* src/components/Hotbar.css */
+
+.hotbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #0021A5; /* UF Blue */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hotbar button {
+    background-color: #FA4616; /* UF Orange */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0 10px;
+}
+
+.hotbar button:hover {
+    background-color: #cc3713;
+}
+
+.plus-button-container {
+    position: relative;
+}
+
+.hotbar .plus-button {
+    background-color: white;
+    color: #0021A5;
+    font-size: 2rem;
+    padding: 5px 15px;
+    border-radius: 50%;
+}
+
+.dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dropdown button {
+    background-color: #fff;
+    color: #0021A5;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown button:hover {
+    background-color: #f1f1f1;
+}
+
+.logo {
+    max-width: 150px;
+    margin-right: 20px;
+}

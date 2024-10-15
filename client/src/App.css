@@ -1,0 +1,46 @@
+/* src/App.css or src/index.css */
+
+/* Apply background to the entire app */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 140, 0, 0.12); /* Transparent light orange */
+  font-family: 'Arial', sans-serif; /* Apply a global font */
+  height: 100%;
+  box-sizing: border-box; /* Ensure padding and margin are included in the element's total width and height */
+}
+
+.App {
+  height: 100%; /* Ensure the app covers the full viewport */
+}
+
+/* General button styling */
+button {
+  font-family: inherit;
+  padding: 10px 20px;
+  background-color: #FA4616; /* UF Orange */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #cc3713;
+}
+
+/* General input styling */
+input, textarea {
+  font-family: inherit;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  border-color: #0021A5; /* UF Blue on focus */
+  outline: none;
+}

@@ -1,0 +1,57 @@
+/* src/components/PostPage.css */
+
+.post-page {
+    min-height: 100vh; /* Full page height */
+    background-color: transparent; /* Inherits the global background */
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.post-item {
+    background-color: rgba(173, 216, 230, 0.2); /* Light blue with transparency */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item h4, .post-item p {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-item:hover {
+    background-color: rgba(173, 216, 230, 0.4); /* Darker on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+}
+
+.post-photo {
+    margin-top: 10px;
+}
+
+.post-photo img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling (in case it wasn't applied in another CSS file) */
+.post-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

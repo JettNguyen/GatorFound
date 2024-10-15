@@ -1,0 +1,38 @@
+/* src/components/HomePage.css */
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full page height */
+    text-align: center;
+    background-color: transparent; /* Inherits the global background */
+}
+
+.logo {
+    max-width: 350px; /* Adjusted logo size */
+    margin-bottom: 20px; /* Space between the logo and the text */
+}
+
+.home-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0021A5; /* UF Blue */
+    margin-bottom: 20px;
+}
+
+.home-description {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Slogan Styling */
+.home-slogan {
+    font-size: 1.2rem;
+    font-style: italic; /* Italicize the slogan */
+    color: #555;
+    margin-top: 20px; /* Add space above the slogan */
+}

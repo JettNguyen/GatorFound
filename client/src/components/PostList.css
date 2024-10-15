@@ -1,0 +1,39 @@
+/* src/components/PostList.css */
+.post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.post-item {
+    background-color: rgba(173, 216, 230, 0.5); /* Stronger light blue with 50% opacity */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-item:hover {
+    background-color: rgba(173, 216, 230, 0.7); /* Darker on hover with 70% opacity */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.post-item h4, .post-item p {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.post-photo {
+    margin-top: 10px;
+}
+
+.post-photo img {
+    max-width: 100%; /* Ensure the image does not exceed container width */
+    max-height: 200px; /* Limit the height to 200px */
+    object-fit: cover; /* Ensures the image maintains aspect ratio */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
