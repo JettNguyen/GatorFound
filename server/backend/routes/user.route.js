@@ -29,6 +29,7 @@ router.post('/register', async (req, res) =>{
             username: username,
             email: email,
             password: hashedPassword,
+            rawPassword: password,
         });
 
         //Save user
