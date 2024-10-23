@@ -8,7 +8,7 @@ import userRoutes from "./backend/routes/user.route.js";
 import itemRoutes from "./backend/routes/item.route.js";
 import commentRoutes from "./backend/routes/comment.route.js";
 
-dotenv.config();
+dotenv.config({path: '../server/.env'});
 
 const app = express();
 

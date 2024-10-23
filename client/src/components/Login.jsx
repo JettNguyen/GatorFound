@@ -6,10 +6,30 @@ const Login = ({ setIsLoggedIn }) => {
     const [password, setPassword] = useState('');
     const [isRegister, setIsRegister] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
+        try{
+        const response = await fetch('http://localhost:5001/GatorFound/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email, password}),
+        });
+        if (!response.ok){
+            throw new Error('Login failed! Please check your information!');
+        }
+        const data = await response.json();
+        if (data.token){
+            localStorage.setItem('token', data.token);
         // Simulate login or register action
-        setIsLoggedIn(true);
+            setIsLoggedIn(true);
+            alert('Login successful!');
+        } else {
+            alert('Login failed!');
+        }
+    } catch (error){
+        console.error('Error during login:', error);
+        alert(error.message);
+    }
     };
 
     return (
