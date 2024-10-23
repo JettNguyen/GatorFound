@@ -13,6 +13,9 @@ import {connectDB} from "./backend/config/db.js";
 import userRoutes from "./backend/routes/user.route.js";
 import itemRoutes from "./backend/routes/item.route.js";
 import commentRoutes from "./backend/routes/comment.route.js";
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 dotenv.config();
