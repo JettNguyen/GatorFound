@@ -5,6 +5,9 @@ const CommentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
     },
+    status: {
+        type: Boolean,   
+    },
     itemID:{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Item',
