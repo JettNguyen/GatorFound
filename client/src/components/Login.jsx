@@ -3,33 +3,57 @@ import React, { useState } from 'react';
 
 const Login = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState(''); // New state for username
     const [password, setPassword] = useState('');
     const [isRegister, setIsRegister] = useState(false);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        try{
-        const response = await fetch('http://localhost:5001/GatorFound/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password}),
-        });
-        if (!response.ok){
-            throw new Error('Login failed! Please check your information!');
+        if (!isRegister){
+            try{
+            const response = await fetch('http://localhost:5001/GatorFound/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email, password}),
+            });
+            if (!response.ok){
+                throw new Error('Login failed! Please check your information!');
+            }
+            const data = await response.json();
+            if (data.token){
+                localStorage.setItem('token', data.token);
+            // Simulate login or register action
+                setIsLoggedIn(true);
+            } else {
+                alert('Login failed!');
+                }
+            } catch (error){
+                console.error('Error during login:', error);
+                alert(error.message);
+            }
         }
-        const data = await response.json();
-        if (data.token){
-            localStorage.setItem('token', data.token);
-        // Simulate login or register action
-            setIsLoggedIn(true);
-            alert('Login successful!');
-        } else {
-            alert('Login failed!');
+        // Sign up
+        else {
+            try{
+                const response = await fetch('http://localhost:5001/GatorFound/register', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email,username, password}),
+                });
+                const data = await response.json();
+
+                if (!response.ok){
+                    throw new Error(data.message || 'Sign up failed! Please provide correct information!');
+                }
+                else {
+                    alert('Sign up successfully! Please sign in again!');
+                    setIsLoggedIn(false);
+                    }
+                } catch (error){
+                    console.error('Error during login:', error);
+                    alert(error.message);
+                }
         }
-    } catch (error){
-        console.error('Error during login:', error);
-        alert(error.message);
-    }
     };
 
     return (
@@ -43,6 +67,16 @@ const Login = ({ setIsLoggedIn }) => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
+                {/* Conditionally show the username field only in Register mode */}
+                {isRegister && (
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                )}
                 <input
                     type="password"
                     placeholder="Password"
