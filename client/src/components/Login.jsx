@@ -1,8 +1,8 @@
-// src/components/Login.jsx
 import React, { useState } from 'react';
 
 const Login = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState(''); // New state for username
     const [password, setPassword] = useState('');
     const [isRegister, setIsRegister] = useState(false);
 
@@ -23,6 +23,16 @@ const Login = ({ setIsLoggedIn }) => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
+                {/* Conditionally show the username field only in Register mode */}
+                {isRegister && (
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                )}
                 <input
                     type="password"
                     placeholder="Password"
