@@ -45,8 +45,11 @@ const Login = ({ setIsLoggedIn }) => {
                     throw new Error(data.message || 'Sign up failed! Please provide correct information!');
                 }
                 else {
-                    alert('Sign up successfully! Please sign in again!');
                     setIsLoggedIn(false);
+                    
+                    alert('Sign up successfully! Please sign in again!');
+                    window.location.reload();
+    
                     }
                 } catch (error){
                     console.error('Error during login:', error);
