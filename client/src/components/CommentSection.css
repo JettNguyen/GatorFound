@@ -1,0 +1,34 @@
+/* src/components/CommentSection.css */
+
+.comment-section {
+    margin-top: 10px;
+    padding-left: 15px;
+    border-left: 2px solid #ddd;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-form input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment-form button {
+    padding: 5px 10px;
+    background-color: #0021A5; /* UF Blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.comments-list {
+    padding-left: 10px;
+    margin-top: 5px;
+}

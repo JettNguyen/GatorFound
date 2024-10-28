@@ -1,0 +1,46 @@
+/* src/components/Comment.css */
+
+.comment {
+    margin-bottom: 10px;
+}
+
+.toggle-replies {
+    background: none;
+    border: none;
+    color: #0021A5; /* UF Blue */
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.replies {
+    padding-left: 15px;
+    margin-top: 5px;
+    border-left: 2px solid #eee;
+}
+
+.reply {
+    margin-bottom: 5px;
+}
+
+.reply-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.reply-form input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reply-form button {
+    padding: 5px 10px;
+    background-color: #0021A5; /* UF Blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}

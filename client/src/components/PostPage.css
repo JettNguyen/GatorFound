@@ -1,8 +1,8 @@
 /* src/components/PostPage.css */
 
 .post-page {
-    min-height: 100vh; /* Full page height */
-    background-color: transparent; /* Inherits the global background */
+    min-height: 100vh;
+    background-color: transparent;
 }
 
 .post-list {
@@ -13,7 +13,7 @@
 }
 
 .post-item {
-    background-color: rgba(173, 216, 230, 0.2); /* Light blue with transparency */
+    background-color: rgba(173, 216, 230, 0.2);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,8 +27,8 @@
 }
 
 .post-item:hover {
-    background-color: rgba(173, 216, 230, 0.4); /* Darker on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover */
+    background-color: rgba(173, 216, 230, 0.4);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .post-photo {
@@ -44,14 +44,11 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Form styling (in case it wasn't applied in another CSS file) */
-.post-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.toggle-comments {
+    background: none;
+    border: none;
+    color: #0021A5; /* UF Blue */
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
 }
