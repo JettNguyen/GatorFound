@@ -6,10 +6,56 @@ const Login = ({ setIsLoggedIn }) => {
     const [password, setPassword] = useState('');
     const [isRegister, setIsRegister] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        // Simulate login or register action
-        setIsLoggedIn(true);
+        if (!isRegister){
+            try{
+            const response = await fetch('http://localhost:5000/GatorFound/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email, password}),
+            });
+            if (!response.ok){
+                throw new Error('Login failed! Please check your information!');
+            }
+            const data = await response.json();
+            if (data.token){
+                localStorage.setItem('token', data.token);
+            // Simulate login or register action
+                setIsLoggedIn(true);
+            } else {
+                alert('Login failed!');
+                }
+            } catch (error){
+                console.error('Error during login:', error);
+                alert(error.message);
+            }
+        }
+        // Sign up
+        else {
+            try{
+                const response = await fetch('http://localhost:5000/GatorFound/register', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email,username, password}),
+                });
+                const data = await response.json();
+
+                if (!response.ok){
+                    throw new Error(data.message || 'Sign up failed! Please provide correct information!');
+                }
+                else {
+                    setIsLoggedIn(false);
+                    
+                    alert('Sign up successfully! Please sign in again!');
+                    window.location.reload();
+    
+                    }
+                } catch (error){
+                    console.error('Error during login:', error);
+                    alert(error.message);
+                }
+        }
     };
 
     return (
