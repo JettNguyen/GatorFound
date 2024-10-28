@@ -1,32 +1,36 @@
 // src/components/CommentSection.jsx
 import React, { useState } from 'react';
+import Comment from './Comment';
+import './CommentSection.css'; // Ensure CSS is imported
 
-const CommentSection = ({ comments, handleCommentSubmit }) => {
+const CommentSection = ({ comments = [], handleCommentSubmit }) => { // Default to empty array
     const [newComment, setNewComment] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (newComment) {
-            handleCommentSubmit(newComment);
-            setNewComment('');  // Clear the input
+    const handleAddComment = () => {
+        if (newComment.trim()) {
+            const commentData = { id: Date.now(), text: newComment, replies: [] };
+            handleCommentSubmit(commentData); // Pass new comment back to PostItem
+            setNewComment(''); // Clear input
         }
     };
 
     return (
         <div className="comment-section">
-            <h5>Comments</h5>
-            {comments.map((comment, index) => (
-                <p key={index}>{comment}</p>
-            ))}
-            <form onSubmit={handleSubmit}>
+            <div className="comment-form">
                 <input
                     type="text"
-                    placeholder="Add a comment"
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
+                    placeholder="Add a comment..."
                 />
-                <button type="submit">Comment</button>
-            </form>
+                <button onClick={handleAddComment}>Post</button>
+            </div>
+
+            <div className="comments-list">
+                {comments.map(comment => (
+                    <Comment key={comment.id} comment={comment} />
+                ))}
+            </div>
         </div>
     );
 };

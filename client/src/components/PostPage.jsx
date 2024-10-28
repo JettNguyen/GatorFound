@@ -2,6 +2,7 @@
 import React from 'react';
 import PostList from './PostList';
 import PostForm from './PostForm';
+import './PostPage.css'; // Ensure CSS is imported
 
 const PostPage = ({ view, lostPosts, foundPosts, userPosts, handleNewPost }) => {
     let postsToShow = [];
