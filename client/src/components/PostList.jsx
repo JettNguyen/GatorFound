@@ -11,7 +11,7 @@ const PostList = ({ posts }) => {
                     <PostItem key={post.id} post={post} /> // Use a unique key, preferably post.id
                 ))
             ) : (
-                <p>No posts to show.</p>
+                <p className='no-posts'>No posts to show!</p>
             )}
         </div>
     );

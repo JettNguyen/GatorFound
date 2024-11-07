@@ -10,6 +10,11 @@
     margin-bottom: 20px;
 }
 
+.post-label {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .post-item h4, .post-item p {
     color: black;
     font-weight: bold;

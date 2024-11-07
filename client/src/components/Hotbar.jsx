@@ -12,12 +12,40 @@ const Hotbar = ({ setView }) => {
         setShowDropdown(false);
     };
 
+    const [activePage, setActivePage] = useState('home');
+
+    const handleButtonClick = (page) => {
+        setActivePage(page);
+        setView(page);
+    }
+
     return (
         <div className="hotbar">
-            <button onClick={() => setView('home')}>Home</button>
-            <button onClick={() => setView('lost')}>Lost Posts</button>
-            <button onClick={() => setView('found')}>Found Posts</button>
-            <button onClick={() => setView('yourPosts')}>View Your Posts</button>
+            <button 
+                onClick={() => handleButtonClick('home')}
+                className={activePage === 'home' ? 'active' : ''}
+            >
+                Home
+            </button>
+            <button 
+                onClick={() => handleButtonClick('lost')}
+                className={activePage === 'lost' ? 'active' : ''}
+            >
+                Lost Posts
+            </button>
+            <button 
+                onClick={() => handleButtonClick('found')}
+                className={activePage === 'found' ? 'active' : ''}
+            >
+                Found Posts
+            </button>
+            <button 
+                onClick={() => handleButtonClick('yourPosts')}
+                className={activePage === 'yourPosts' ? 'active' : ''}
+            >
+                Your Posts
+            </button>
+
 
             {/* Container for the button and dropdown with hover events */}
             <div 

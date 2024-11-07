@@ -30,14 +30,14 @@ const PostItem = ({ post }) => {
                 />
             </div>
 
-            <h4>{postType === 'lost' ? 'Lost Item' : 'Found Item'}: {itemName}</h4>
-            <p><strong>Description:</strong> {itemDescription || 'Not Provided'}</p>
-            <p><strong>Location:</strong> {itemLocation || 'Not Provided'}</p>
+            <h4><strong><u>{postType === 'lost' ? 'Lost Item' : 'Found Item'}:</u></strong> {itemName}</h4>
+            <p><strong><u>Description:</u></strong> {itemDescription || 'Not Provided'}</p>
+            <p><strong><u>Location:</u></strong> {itemLocation || 'Not Provided'}</p>
 
             {/* Display the uploaded image if available */}
             {itemPhoto && (
                 <div className="post-photo">
-                    <p><strong>Photo:</strong></p>
+                    <p><strong><u>Photo:</u></strong></p>
                     <img src={itemPhoto} alt={itemName} />
                 </div>
             )}

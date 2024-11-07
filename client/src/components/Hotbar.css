@@ -25,6 +25,32 @@
     transition: background-color 0.2s;
 }
 
+.hotbar button.active {
+    background-color: #021a2d;
+    color: #e36d32;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0 10px;
+    z-index: 2;
+    transition: background-color 0.2s;
+}
+
+.hotbar button.active:hover {
+    background-color: #021a2d;
+    color: #e36d32;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0 10px;
+    z-index: 2;
+    transition: background-color 0.2s;
+}
+
 .hotbar button:hover {
     background-color: #b95624;
 }

@@ -11,6 +11,7 @@
 .post-form textarea {
     background-color: #012641;
     color: white;
+    border: transparent;
 }
 
 .post-form input[type="text"]::placeholder, 
@@ -20,6 +21,7 @@
 
 .post-form input[type="text"]:focus, 
 .post-form textarea:focus {
+    transition: border 0.1s ease;
     border: 2px solid #e36d32; 
     outline: none; 
 }
@@ -33,7 +35,7 @@
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid white;
+    border: transparent;
     border-radius: 4px;
     color: white;
     font-size: 0.9rem;
@@ -41,6 +43,9 @@
 
 .post-form textarea {
     min-height: 80px;
+    resize: vertical;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 
