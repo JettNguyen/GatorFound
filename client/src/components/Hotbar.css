@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #0021A5; /* UF Blue */
+    background-color: #012641; /* Blue to match logo */
     position: sticky;
     top: 0;
     z-index: 10;
@@ -13,54 +13,83 @@
 }
 
 .hotbar button {
-    background-color: #FA4616; /* UF Orange */
-    color: white;
+    background-color: #e36d32; /* Orange to match logo */
+    color: #012641;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
     font-size: 1rem;
     margin: 0 10px;
+    z-index: 2;
+    transition: background-color 0.2s;
 }
 
 .hotbar button:hover {
-    background-color: #cc3713;
+    background-color: #b95624;
 }
 
 .plus-button-container {
     position: relative;
+    padding: 0;
+    z-index: 2;
 }
 
 .hotbar .plus-button {
-    background-color: white;
-    color: #0021A5;
+    background-color: #e36d32;
+    color: #00253f;
     font-size: 2rem;
     padding: 5px 15px;
     border-radius: 50%;
+    margin-bottom: -2px;
+    z-index: 2;
+    transition: transform 0.2s ease;
 }
 
+.plus-button-container:hover .plus-button {
+    background-color: #b95624;
+    transform: rotate(45deg);
+}
+
+
 .dropdown {
+    display: none;
     position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    top: 0px;
+    right: 20px;
+    width: 50;
     border-radius: 8px;
-    overflow: hidden;
+    z-index: 0;
+
+
+    padding-top: 47px;
+
+    margin: 0px 0px 0px -40px;
+
+}
+
+.plus-button-container:hover .dropdown {
+    display: block;
+    z-index: 1;
 }
 
 .dropdown button {
-    background-color: #fff;
-    color: #0021A5;
-    border: none;
-    padding: 10px;
+    background-color: #e36d32;
+    color: #012641;
+    border-radius: 8px;
+    padding: 15px;
     width: 100%;
+    font-size: 1rem;
     text-align: left;
     cursor: pointer;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .dropdown button:hover {
-    background-color: #f1f1f1;
+    background-color: #b95624;
 }
 
 .logo {

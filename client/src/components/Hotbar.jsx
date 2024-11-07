@@ -1,23 +1,31 @@
-// src/components/Hotbar.jsx
 import React, { useState } from 'react';
 import './Hotbar.css';
 
 const Hotbar = ({ setView }) => {
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+    const handleMouseEnter = () => {
+        setShowDropdown(true);
+    };
+
+    const handleMouseLeave = () => {
+        setShowDropdown(false);
     };
 
     return (
         <div className="hotbar">
-            <button onClick={() => setView('home')}>Home</button> {/* Home button */}
+            <button onClick={() => setView('home')}>Home</button>
             <button onClick={() => setView('lost')}>Lost Posts</button>
             <button onClick={() => setView('found')}>Found Posts</button>
             <button onClick={() => setView('yourPosts')}>View Your Posts</button>
 
-            <div className="plus-button-container">
-                <button className="plus-button" onClick={toggleDropdown}>
+            {/* Container for the button and dropdown with hover events */}
+            <div 
+                className="plus-button-container"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <button className="plus-button">
                     &#43;
                 </button>
                 {showDropdown && (
