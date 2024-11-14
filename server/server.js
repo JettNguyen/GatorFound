@@ -19,7 +19,7 @@ app.use('/GatorFound', userRoutes);
 app.use('/GatorFound/items', itemRoutes);
 app.use('/GatorFound/comments', commentRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server running on port ${PORT}`);

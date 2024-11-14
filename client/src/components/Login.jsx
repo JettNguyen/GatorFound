@@ -11,7 +11,7 @@ const Login = ({ setIsLoggedIn }) => {
         e.preventDefault();
         if (!isRegister){
             try{
-            const response = await fetch('http://localhost:5000/GatorFound/login', {
+            const response = await fetch('http://localhost:5001/GatorFound/login', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({email, password}),
@@ -35,7 +35,7 @@ const Login = ({ setIsLoggedIn }) => {
         // Sign up
         else {
             try{
-                const response = await fetch('http://localhost:5000/GatorFound/register', {
+                const response = await fetch('http://localhost:5001/GatorFound/register', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({email,username, password}),
