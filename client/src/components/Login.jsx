@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from './GatorFoundLogo.png';
 
 const Login = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState('');
@@ -60,6 +61,7 @@ const Login = ({ setIsLoggedIn }) => {
 
     return (
         <div className="login">
+            <img src={logo} alt="Gator Found Logo" className="logo" />
             <h2>{isRegister ? 'Create Account' : 'Login'}</h2>
             <form onSubmit={handleSubmit}>
                 <input

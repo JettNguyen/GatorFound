@@ -32,7 +32,7 @@
 }
 
 .post-item:hover {
-    background-color: rgba(173, 216, 230, 0.7); /* Darker on hover with 70% opacity */
+    background-color: rgba(58, 111, 129, 0.7); /* Darker on hover with 70% opacity */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 

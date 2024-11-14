@@ -1,11 +1,14 @@
 /* src/App.css or src/index.css */
 
+
+
 /* Apply background to the entire app */
 body, html {
   margin: 0;
   padding: 0;
-  background-color: rgba(255, 140, 0, 0.12); /* Transparent light orange */
+  background-color: #021a2d;
   font-family: 'Arial', sans-serif; /* Apply a global font */
+  color: white;
   height: 100%;
   box-sizing: border-box; /* Ensure padding and margin are included in the element's total width and height */
 }
@@ -18,15 +21,17 @@ body, html {
 button {
   font-family: inherit;
   padding: 10px 20px;
-  background-color: #FA4616; /* UF Orange */
+  background-color: #e36d32; /* UF Orange */
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  margin: 5px;
+  transition: background-color 0.2s;
 }
 
 button:hover {
-  background-color: #cc3713;
+  background-color: #b95624;
 }
 
 /* General input styling */
@@ -44,3 +49,28 @@ input:focus, textarea:focus {
   border-color: #0021A5; /* UF Blue on focus */
   outline: none;
 }
+
+/* Center the login container */
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Horizontally center all children */
+  justify-content: center;  /* Vertically center all children */
+  min-height: 100vh;
+  color: #e36d32;
+  background-color: #021a2d;
+  text-align: center;
+}
+
+/* Logo styling */
+.logo {
+  width: 175px;  /* Adjust the width of the logo */
+  height: auto;  /* Maintain aspect ratio */
+  margin-bottom: 10px;  /* Add some space below the logo */
+  display: block;  /* Make the image block-level to remove extra space below */
+  margin-left: auto;  /* Center horizontally */
+  margin-right: auto;  /* Center horizontally */
+}
+
+/* Rest of your styles... */
+

@@ -6,9 +6,10 @@ import HomePage from './components/HomePage'; // Import the HomePage component
 import PostPage from './components/PostPage';
 import fillerPosts from './fillerPosts.json'; // Import filler posts for testing
 import './App.css';
+import logo from './components/GatorFoundLogo.png';
 
 const App = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulate login state
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate login state
     const [view, setView] = useState('home'); // Default view is the home page
     const [lostPosts, setLostPosts] = useState(fillerPosts.filter(post => post.postType === 'lost')); // Initial lost posts
     const [foundPosts, setFoundPosts] = useState(fillerPosts.filter(post => post.postType === 'found')); // Initial found posts
