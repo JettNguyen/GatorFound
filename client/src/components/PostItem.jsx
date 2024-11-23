@@ -6,7 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 
 const PostItem = ({ post }) => {
-    const { itemName, itemDescription, itemLocation, itemPhoto, postType } = post;
+    const itemName = post.itemName;
+    const itemDescription = post.itemDescription;
+    const itemLocation = post.itemLocation;
+    const postType = post.postType;
+    const itemPhoto = post.itemPhoto;
     const [comments, setComments] = useState([]); // Initialize comments as empty array
     const [showCommentSection, setShowCommentSection] = useState(false); // Toggle comment visibility
     const [isFlagged, setIsFlagged] = useState(false); // State to manage flagging
@@ -14,7 +18,7 @@ const PostItem = ({ post }) => {
     const handleNewComment = (comment) => {
         setComments([...comments, comment]);
     };
-
+    
     const toggleFlag = () => {
         setIsFlagged(!isFlagged);
         // Optional: Call backend API to flag/unflag the post
@@ -38,7 +42,7 @@ const PostItem = ({ post }) => {
             {itemPhoto && (
                 <div className="post-photo">
                     <p><strong><u>Photo:</u></strong></p>
-                    <img src={itemPhoto} alt={itemName} />
+                    <img src={itemPhoto} alt={itemName} style={{ width: 'auto', height: 'auto' }} />
                 </div>
             )}
 

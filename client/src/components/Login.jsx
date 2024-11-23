@@ -21,10 +21,11 @@ const Login = ({ setIsLoggedIn }) => {
             }
             const data = await response.json();
             if (data.token){
-                localStorage.setItem('token', data.token);
+                sessionStorage.setItem('token', data.token);
             // Simulate login or register action
                 setIsLoggedIn(true);
-            } else {
+                sessionStorage.setItem('isLoggedIn', 'true');
+            } else {    
                 alert('Login failed!');
                 }
             } catch (error){

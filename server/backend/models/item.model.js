@@ -1,29 +1,27 @@
 import mongoose from 'mongoose';
 
 const ItemSchema = new mongoose.Schema({
-    category: {
+    itemName: {
         type: String,
+        required:  true,
         max: 50,
     },
-    description: {
+    itemDescription: {
         type: String,
-        required: true,
         min: 0,
         max: 200,
     },
-    status: {
-        type: Boolean,
-        required: true,
-        default: false,   // false = lost, true = found
+    postType: {
+        type: String,   // false = lost, true = found
     },
-    location: {
+    itemLocation: {
         type: String,  // Text or image
     },
     userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', 
     },
-    photoUrl: {
+    itemPhoto: {
         type: String,   // URL to image
     },
 }, {
