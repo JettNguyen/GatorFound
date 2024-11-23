@@ -55,12 +55,12 @@ const App = () => {
         });
     };
 
-    useEffect(() => {
-        const storedLoginState = localStorage.getItem('isLoggedIn'); // Using localStorage to persist login state
-        if (storedLoginState === 'true') {
-            setIsLoggedIn(true);  // Set login state from localStorage
-        }
-    }, []); // Run only once when the component mounts
+    // useEffect(() => {
+    //     const storedLoginState = localStorage.getItem('isLoggedIn'); // Using localStorage to persist login state
+    //     if (storedLoginState === 'true') {
+    //         setIsLoggedIn(true);  // Set login state from localStorage
+    //     }
+    // }, []); // Run only once when the component mounts
 
     // Store login state in localStorage when it changes
     useEffect(() => {
