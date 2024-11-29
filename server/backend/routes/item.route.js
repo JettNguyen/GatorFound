@@ -50,6 +50,7 @@ router.post('/', upload.single('itemPhoto'), verifyToken, async (req,res) => {
             itemLocation,
             userID: userID,
             itemPhoto,
+            comments: [],
         });
         await newItem.save();
         res.status(201).json({Success: true, data: newItem});

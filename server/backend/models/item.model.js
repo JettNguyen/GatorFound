@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Comment from './comment.model.js';
 
 const ItemSchema = new mongoose.Schema({
     itemName: {
@@ -24,6 +25,10 @@ const ItemSchema = new mongoose.Schema({
     itemPhoto: {
         type: String,   // URL to image
     },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment',
+    }]
 }, {
     timestamps: true
 });  

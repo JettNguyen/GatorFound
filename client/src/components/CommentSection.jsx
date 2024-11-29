@@ -1,16 +1,35 @@
-// src/components/CommentSection.jsx
 import React, { useState } from 'react';
 import Comment from './Comment';
-import './CommentSection.css'; // Ensure CSS is imported
+import './CommentSection.css';
 
-const CommentSection = ({ comments = [], handleCommentSubmit }) => { // Default to empty array
+const CommentSection = ({ itemID, comments, handleCommentSubmit }) => {
     const [newComment, setNewComment] = useState('');
 
-    const handleAddComment = () => {
+    const handleNewComment = async () => {
+        
         if (newComment.trim()) {
-            const commentData = { id: Date.now(), text: newComment, replies: [] };
-            handleCommentSubmit(commentData); // Pass new comment back to PostItem
-            setNewComment(''); // Clear input
+            try {
+                const response = await fetch(`http://localhost:5000/GatorFound/comments/${itemID}/comments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'auth-token': `${sessionStorage.getItem('token')}`,
+                    },
+                    body: JSON.stringify({ comment: newComment }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add comment');
+                }
+
+                const updatedComments = await response.json();
+                const comment = updatedComments.data;
+                console.log("New comment is: ", comment);
+                handleCommentSubmit(comment);  // Send updated comments back to the parent
+                setNewComment('');  // Clear the input field
+            } catch (error) {
+                console.error('Error adding comment:', error);
+            }
         }
     };
 
@@ -23,13 +42,17 @@ const CommentSection = ({ comments = [], handleCommentSubmit }) => { // Default 
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder="Add a comment..."
                 />
-                <button onClick={handleAddComment}>Post</button>
+                <button onClick={handleNewComment}>Post</button>
             </div>
 
             <div className="comments-list">
-                {comments.map(comment => (
-                    <Comment key={comment.id} comment={comment} />
-                ))}
+                {comments.map((com) => {
+                    console.log("Comment: ",com );
+
+                return(
+                    <Comment key={com.id} comment={com} />
+                );
+            })}
             </div>
         </div>
     );

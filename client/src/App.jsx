@@ -63,13 +63,13 @@ const App = () => {
     // }, []); // Run only once when the component mounts
 
     // Store login state in localStorage when it changes
-    useEffect(() => {
-        if (isLoggedIn) {
-            localStorage.setItem('isLoggedIn', 'true');
-        } else {
-            localStorage.setItem('isLoggedIn', 'false');
-        }
-    }, [isLoggedIn]);
+    // useEffect(() => {
+    //     if (isLoggedIn) {
+    //         sessionStorage.setItem('isLoggedIn', 'true');
+    //     } else {
+    //         sessionStorage.setItem('isLoggedIn', 'false');
+    //     }
+    // }, [isLoggedIn]);
 
     // If not logged in, show the login page
     if (!isLoggedIn) {

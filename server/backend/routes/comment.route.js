@@ -1,14 +1,55 @@
 import express from "express";
 import Comment from "../models/comment.model.js";
+import Item from "../models/item.model.js";
+import verifyToken from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post('/', async (req,res) => {
-    const post = req.body;
+router.post('/:itemId/comments', verifyToken, async (req,res) => {
+    const userID = req.user.id;
+    const {comment} = req.body;
+    const itemId = req.params.itemId;
     try{
-        const newComment = new Comment(post);
+        const item = await Item.findById(itemId);
+        if (!item)  res.status(404).json({message: "Item not found!"});
+        
+        const newComment = new Comment({
+            comment,
+            userID,
+            comments: [],
+        });
         await newComment.save();
-        res.status(201).json({Success: true, data: newComment});
+        item.comments.push(newComment._id);
+        await item.save();
+       
+        res.status(201).json({Success: true, data: {id: newComment._id, comment: newComment.comment,},});
+    }
+    catch (error){
+        console.error("Error in saving comment: ", error.message);
+        res.status(500).json({success: false, message: "Server error!"});
+    }
+});
+// Post new replies
+router.post('/:commentId/replies', verifyToken, async (req,res) => {
+    const userID = req.user.id;
+    const {reply} = req.body;
+
+    try{
+        const comment = await Comment.findById(req.params.commentId);
+        if (!comment)  res.status(404).json({message: "Item not found!"});
+        
+        const timestamp = new Date();
+        const newReply = {reply, userID, timestamp};
+        comment.comments.push(newReply);
+        await comment.save();
+        res.status(201).json({
+            success: true,
+            data: {
+                id: comment.comments[comment.comments.length - 1]._id,
+                reply: newReply.reply,
+                 
+            },
+        });
     }
     catch (error){
         console.error("Error in saving comment: ", error.message);
@@ -17,17 +58,40 @@ router.post('/', async (req,res) => {
 });
 
 // Get a list of all posts
-router.get('/', async(req, res) => {
+router.get('/:itemId/comments', verifyToken, async(req, res) => {
+    const itemId = req.params.itemId;
     try{
-        const comment = await Comment.find({});
-        res.status(200).json({success: true, data: comment});
+        const item = await Item.findById(itemId).populate('comments', 'comment');
+        if (!item) return res.status(404).json({message: "Item not found!"});
+        const commentTexts = item.comments.map(com => ({
+            id: com._id,
+            comment: com.comment
+        }));
+        res.status(200).json({success: true, data: commentTexts});
     } catch (error){
         console.log("Error in getting comment: ", error.message);
         res.status(400).json({success: false, message: "Server Error!"});
     }
 });
 
-// Get a specific comment
+// Get a list of all posts
+router.get('/:commentId/replies', verifyToken, async(req, res) => {
+    const commentId = req.params.commentId;
+    try{
+        const comment = await Comment.findById(commentId).populate('comments', 'reply');
+        if (!comment) return res.status(404).json({message: "Item not found!"});
+        const replyText = comment.comments.map(rep => ({
+            id: rep.id,
+            reply: rep.reply
+        }));
+        res.status(200).json({success: true, data: replyText});
+    } catch (error){
+        console.log("Error in getting comment: ", error.message);
+        res.status(400).json({success: false, message: "Server Error!"});
+    }
+});
+
+// Get a specific reply
 router.get('/:id', async(req, res) => {
     try{
         const comment = await comment.findById(req.params.id);
