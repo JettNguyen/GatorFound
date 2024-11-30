@@ -35,10 +35,8 @@ const Comment = ({ comment }) => {
     };
 
     // Load comments when the component mounts
-    useEffect(() => {
-       
-        fetchReplies(comment.id);
-        
+    useEffect(() => {     
+        fetchReplies(comment.id);  
     }, [comment.id]);
     
     // const handleReply = () => {S
@@ -80,7 +78,7 @@ const Comment = ({ comment }) => {
 
     return (
         <div className="comment">
-            <p>{comment.comment}</p>
+            <p><strong>{comment.username}:</strong> {comment.comment}</p> {/* Display username and comment */}
             <button className="toggle-replies" onClick={() => setShowReplies(!showReplies)}>
                 {showReplies ? '▼ Hide Replies' : '▶ Reply'}
             </button>
@@ -89,7 +87,7 @@ const Comment = ({ comment }) => {
                 <div className="replies">
                     {replies.map(reply => (
                         <div key={reply.id} className="reply">
-                            <p>{reply.reply}</p>
+                            <p><strong>{reply.username}</strong>: {reply.reply}</p> {/* Display username with reply */}
                         </div>
                     ))}
                     <div className="reply-form">

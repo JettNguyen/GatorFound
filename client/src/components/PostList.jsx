@@ -4,34 +4,36 @@ import './PostList.css';
 import PostItem from './PostItem'; // Import PostItem
 
 const PostList = ({posts}) => {
-    // const [items, setItems] = useState(posts || []);  // Define the state for storing items
-    // const [loading, setLoading] = useState(true);  // Define the loading state
+    // const [posts, setPosts] = useState([]);  // Define the state for storing items
 
-    // useEffect(() => {
-    //     // Fetch all items from the backend
-    //     fetch('http://localhost:5000/GatorFound/items', {
+    // //Fetch all items from the backend
+    // const fetchItems = async () => { 
+    //     try {
+    //         const response = await fetch('http://localhost:5000/GatorFound/items', {
     //         method: 'GET', // Explicitly specifying the method
     //         headers: {
     //             'Content-Type': 'application/json',
-    //         }
-    //     })
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             setItems(data.data);  // Store fetched items
-                
-    //             console.log(data);
-    //             setLoading(false);  // Stop loading once data is fetched
-    //             alert("Succesfsuuly");
-    //         })
-    //         .catch((error) => {
-    //             console.error('Error fetching items:', error);
-    //             setLoading(false);  // Stop loading on error
-    //         });
-    // }, []);  // Empty dependency array means this effect runs once after the initial render
+    //             'auth-token': `${sessionStorage.getItem('token')}`,
+    //         },
+    //     });
+    //        if  (!response.ok) {
+    //         throw new Error("Failed to fetch items");
+    //        }
 
-    // if (loading) {
-    //     return <p>Loading items...</p>;  // Show loading message while data is being fetched
+    //        const data = await response.json();
+
+    //        setItems(data.length? data.data : []);
+    //     } catch (error){
+    //         console.error("Error fetching items: ", error);
+    //         setItems([]);
+    //     }
     // }
+    // useEffect(() => {
+       
+    //     fetchItems();
+        
+    // }, [posts]);
+
     return (
         <div className="post-list">
             {posts.length > 0 ? (

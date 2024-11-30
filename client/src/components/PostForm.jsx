@@ -63,7 +63,14 @@ const PostForm = ({ postType, handleSubmit, setUserPosts }) => {
     };
     const fetchPosts = async () => {
         try {
-            const response = await fetch('http://localhost:5000/GatorFound/items');
+            const response = await fetch('http://localhost:5000/GatorFound/items', {
+                method: 'GET', // Explicitly specifying the method
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': `${sessionStorage.getItem('token')}`,
+                }
+            });
+            console.log("DID I RUN TO HERE?");
             const data = await response.json();
             setUserPosts(data.data); // Update state with the fetched posts
         } catch (error) {

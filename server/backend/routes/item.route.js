@@ -74,9 +74,9 @@ router.get('/', verifyToken, async(req, res) => {
 });
 
 // Get a specific item
-router.get('/:id', async(req, res) => {
+router.get('/all', verifyToken, async(req, res) => {
     try{
-        const item = await Item.findById(req.params.id);
+        const item = await Item.find();
         if (!item) return res.status(404).json({success: false, message: "Item not found!"});
         res.status(200).json({success: true, data: item});
     } catch (error){

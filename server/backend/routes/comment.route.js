@@ -2,6 +2,7 @@ import express from "express";
 import Comment from "../models/comment.model.js";
 import Item from "../models/item.model.js";
 import verifyToken from "../middlewares/auth.js";
+import User from "../models/user.model.js";
 
 const router = express.Router();
 
@@ -11,18 +12,20 @@ router.post('/:itemId/comments', verifyToken, async (req,res) => {
     const itemId = req.params.itemId;
     try{
         const item = await Item.findById(itemId);
+        const user = await User.findById(userID);
+        const username = user.username;
         if (!item)  res.status(404).json({message: "Item not found!"});
         
         const newComment = new Comment({
             comment,
-            userID,
+            username,
             comments: [],
         });
         await newComment.save();
         item.comments.push(newComment._id);
         await item.save();
        
-        res.status(201).json({Success: true, data: {id: newComment._id, comment: newComment.comment,},});
+        res.status(201).json({Success: true, data: {id: newComment._id, comment: newComment.comment, username: newComment.username,},});
     }
     catch (error){
         console.error("Error in saving comment: ", error.message);
@@ -35,11 +38,13 @@ router.post('/:commentId/replies', verifyToken, async (req,res) => {
     const {reply} = req.body;
 
     try{
+        const user = await User.findById(userID);
+        const username = user.username;
         const comment = await Comment.findById(req.params.commentId);
         if (!comment)  res.status(404).json({message: "Item not found!"});
         
         const timestamp = new Date();
-        const newReply = {reply, userID, timestamp};
+        const newReply = {reply, username, timestamp};
         comment.comments.push(newReply);
         await comment.save();
         res.status(201).json({
@@ -47,7 +52,7 @@ router.post('/:commentId/replies', verifyToken, async (req,res) => {
             data: {
                 id: comment.comments[comment.comments.length - 1]._id,
                 reply: newReply.reply,
-                 
+                username: newReply.username,
             },
         });
     }
@@ -61,11 +66,12 @@ router.post('/:commentId/replies', verifyToken, async (req,res) => {
 router.get('/:itemId/comments', verifyToken, async(req, res) => {
     const itemId = req.params.itemId;
     try{
-        const item = await Item.findById(itemId).populate('comments', 'comment');
+        const item = await Item.findById(itemId).populate('comments', 'comment username');
         if (!item) return res.status(404).json({message: "Item not found!"});
         const commentTexts = item.comments.map(com => ({
             id: com._id,
-            comment: com.comment
+            comment: com.comment,
+            username: com.username,
         }));
         res.status(200).json({success: true, data: commentTexts});
     } catch (error){
@@ -78,11 +84,12 @@ router.get('/:itemId/comments', verifyToken, async(req, res) => {
 router.get('/:commentId/replies', verifyToken, async(req, res) => {
     const commentId = req.params.commentId;
     try{
-        const comment = await Comment.findById(commentId).populate('comments', 'reply');
+        const comment = await Comment.findById(commentId).populate('comments', 'reply username');
         if (!comment) return res.status(404).json({message: "Item not found!"});
         const replyText = comment.comments.map(rep => ({
             id: rep.id,
-            reply: rep.reply
+            reply: rep.reply,
+            username: rep.username,
         }));
         res.status(200).json({success: true, data: replyText});
     } catch (error){
