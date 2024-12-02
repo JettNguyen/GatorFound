@@ -25,6 +25,10 @@ const ItemSchema = new mongoose.Schema({
     itemPhoto: {
         type: String,   // URL to image
     },
+    isFlagged: {
+        type: Boolean,
+        default: false,
+    },
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comment',

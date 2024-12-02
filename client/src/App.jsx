@@ -61,9 +61,11 @@ const App = () => {
 
     // Filter lost and found posts whenever userPosts change
     useEffect(() => {
-        if (allPosts) {
+        if (allPosts && isLoggedIn) {
             setLostPosts(allPosts.filter(post => post.postType === 'lost'));
             setFoundPosts(allPosts.filter(post => post.postType === 'found'));
+            fetchAllPosts();
+            fetchPosts();
         }
     }, [allPosts]); // Dependency: re-filter when `userPosts` changes
 
@@ -81,6 +83,11 @@ const App = () => {
             setFoundPosts(updatedPosts.filter(post => post.postType === 'found'));
             return updatedPosts;
         });
+        await fetchPosts();
+        await fetchAllPosts();
+    };
+
+    const handleFlag = async() =>{
         await fetchPosts();
         await fetchAllPosts();
     };
@@ -113,7 +120,9 @@ const App = () => {
                     foundPosts={foundPosts}
                     userPosts={userPosts}
                     handleNewPost={handleNewPost}
+                    handleFlag={handleFlag}
                     setUserPosts={setUserPosts}
+                    setAllPosts = {setAllPosts}
                 />
             )}
         </div>

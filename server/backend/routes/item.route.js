@@ -86,31 +86,42 @@ router.get('/all', verifyToken, async(req, res) => {
 });
 
 // Update items
-router.put('/:id', async(req, res) => {
-    const {id} = req.params;
-    const item = req.body;
-    if (!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({success: false, message: "Invalid Information!"});
-    }
-    try{
-        const updatedItem = await Item.findByIdAndUpdate(id, item, {new: true});
-        res.status(200).json({success: true, data: updatedItem});
-    } catch (error){
-        console.log("Error in updating user: ", error.message);
-        res.status(500).json({success: false, message: "Server Error!"});
+router.patch('/:id/flag', async(req, res) => {
+    try {
+        const item = await Item.findById(req.params.id);
+        if (!item) {
+            return res.status(404).json({ message: 'Item not found' });
+        }
+
+        // Flag the post by setting isFlagged to true
+        item.isFlagged = !item.isFlagged;
+        await item.save();
+
+        res.status(200).json({ success: true, message: 'Post flagged successfully' });
+    } catch (error) {
+        console.error("Error flagging post: ", error);
+        res.status(500).json({ success: false, message: 'Error in flagging item' });
     }
 });
 
 //Delete item
-router.delete('/:id', async(req, res) =>{
-    const {id} = req.params;
-    try{
-        await Item.findByIdAndDelete(id);
-        res.status(200).json({success: true, message: "User deleted!"});
-    } catch (error){
-        console.log("Error in deleting user: ", error.message);
-        res.status(404).json({success: false, message: "Cannot find product!"});
+router.delete('/:id', verifyToken, async(req, res) =>{
+    const id = req.params.id;
+    const userID = req.user.id;
+    const item = await Item.findById(id);
+    console.log("USER ID FOR DELETING:", userID);
+    if (item.userID != userID) {
+        res.status(404).json({success: false, message: "This is not your post!"});
     }
+    else {
+        try{
+            await Item.findByIdAndDelete(id);
+            res.status(200).json({success: true, message: "Item deleted!"});
+        } catch (error){
+            console.log("Error in deleting user: ", error.message);
+            res.status(404).json({success: false, message: "Cannot find product!"});
+        }
+    }   
 });
 
 export default router;

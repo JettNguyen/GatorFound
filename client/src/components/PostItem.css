@@ -49,6 +49,16 @@
     margin-top: 10px;
 }
 
+.delete-button {
+    position:absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #0021A5; /* UF Blue */
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 /* Flag Icon Styling */
 .flag-icon {
     position: absolute;

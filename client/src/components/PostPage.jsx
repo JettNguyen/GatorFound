@@ -4,7 +4,7 @@ import PostList from './PostList';
 import PostForm from './PostForm';
 import './PostPage.css'; // Ensure CSS is imported
 
-const PostPage = ({ view, lostPosts, foundPosts, userPosts, handleNewPost, setUserPosts }) => {
+const PostPage = ({ view, lostPosts, foundPosts, userPosts, handleNewPost, handleFlag, setUserPosts, setAllPosts }) => {
     let postsToShow = [];
 
     // Determine what posts to display based on the view
@@ -21,7 +21,7 @@ const PostPage = ({ view, lostPosts, foundPosts, userPosts, handleNewPost, setUs
             {view === 'createLostPost' && <PostForm postType="lost" handleSubmit={handleNewPost} setUserPosts={setUserPosts}/>}
             {view === 'createFoundPost' && <PostForm postType="found" handleSubmit={handleNewPost} setUserPosts={setUserPosts}/>}
             {(view !== 'createLostPost' && view !== 'createFoundPost') && (
-                <PostList posts={postsToShow} />
+                <PostList posts={postsToShow} handleFlag={handleFlag} setAllPosts = {setAllPosts}/>
             )}
         </div>
     );
