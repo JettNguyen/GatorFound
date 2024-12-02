@@ -9,7 +9,7 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
     const token = sessionStorage.getItem('token');
     const decodedToken = token? jwtDecode(token): null;
     const userID = decodedToken ? decodedToken.id : null;
-    const { itemName, itemDescription, itemLocation, postType, itemPhoto, _id: itemID, userID: postId } = post;
+    const { itemName, itemDescription, itemLocation, postType, itemPhoto, _id: itemID, userID: postId, username } = post;
     const [comments, setComments] = useState([]); // Comments array
     const [showCommentSection, setShowCommentSection] = useState(false); // Toggle comments visibility
     const [isFlagged, setIsFlagged] = useState(post.isFlagged); // Manage flagging
@@ -130,6 +130,9 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
                 />
 
             </div>
+            <h5 className='username'>
+            <strong>Posted by:</strong> {username || 'Anonymous'}
+            </h5>
             {userID === postId && (
                 <button
                     className="delete-button"

@@ -21,6 +21,9 @@ const ItemSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', 
     },
+    username: {
+        type: String,
+    },
     itemPhoto: {
         type: String,   // URL to image
     },

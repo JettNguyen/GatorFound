@@ -6,6 +6,7 @@ import {S3Client} from '@aws-sdk/client-s3';
 import multer from "multer";
 import multerS3 from "multer-s3";
 import dotenv from 'dotenv';
+import User from "../models/user.model.js";
 
 dotenv.config({path: "../server/.env"});
 const router = express.Router();
@@ -42,6 +43,8 @@ router.post('/', upload.single('itemPhoto'), verifyToken, async (req,res) => {
     const { itemName, itemDescription, postType, itemLocation } = req.body;
     const itemPhoto = req.file ? req.file.location : null;
     const userID = req.user.id;
+    const user = await User.findById(userID);
+
     try{
         const newItem = new Item({
             itemName,
@@ -49,6 +52,7 @@ router.post('/', upload.single('itemPhoto'), verifyToken, async (req,res) => {
             postType,
             itemLocation,
             userID: userID,
+            username: user.username,
             itemPhoto,
             comments: [],
         });
