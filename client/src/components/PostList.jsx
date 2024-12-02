@@ -1,5 +1,5 @@
 // src/components/PostList.jsx
-import React, { useState } from 'react';  // Add the missing imports
+import React from 'react';  // Add the missing imports
 import './PostList.css';
 import PostItem from './PostItem'; // Import PostItem
 

@@ -2,7 +2,7 @@ import express from "express";
 import Item from "../models/item.model.js";
 import verifyToken from "../middlewares/auth.js"
 // import upload from "./upload_route.js"
-import {S3Client, PutObjectCommand} from '@aws-sdk/client-s3';
+import {S3Client} from '@aws-sdk/client-s3';
 import multer from "multer";
 import multerS3 from "multer-s3";
 import dotenv from 'dotenv';

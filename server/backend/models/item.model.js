@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import Comment from './comment.model.js';
 
 const ItemSchema = new mongoose.Schema({
     itemName: {
