@@ -26,7 +26,9 @@ const PostPage = ({ view, lostPosts, foundPosts, userPosts, handleNewPost, handl
 
         // Filter posts based on item name (case insensitive)
         const filtered = postsToShow.filter((post) =>
-            post.itemName.toLowerCase().includes(query)
+            post.itemName.toLowerCase().includes(query) ||
+            post.itemDescription.toLowerCase().includes(query) ||
+            post.itemLocation.toLowerCase().includes(query)
         );
         setFilteredPosts(filtered);
     };
@@ -40,7 +42,7 @@ const PostPage = ({ view, lostPosts, foundPosts, userPosts, handleNewPost, handl
             {(view !== 'createLostPost' && view !== 'createFoundPost') && (
                 <input
                     type="text"
-                    placeholder="Search posts by item name"
+                    placeholder="Search posts by item name, description, location..."
                     value={searchQuery}
                     onChange={handleSearch}
                     className="search-input"
