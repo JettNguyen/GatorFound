@@ -5,9 +5,11 @@
 }
 
 .toggle-replies {
+    padding: 5px 10px;
     background: none;
     border: none;
-    color: #0021A5; /* UF Blue */
+    background-color: #c75a24;
+    color: #012641; /* UF Blue */
     font-weight: bold;
     cursor: pointer;
     margin-top: 5px;
@@ -52,7 +54,7 @@
 
 .reply {
     margin-bottom: 10px;
-    padding: 10px;
+    
 }
 
 .reply p {

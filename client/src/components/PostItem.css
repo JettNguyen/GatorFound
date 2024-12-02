@@ -51,7 +51,7 @@
 
 .delete-button {
     position:absolute;
-    bottom: 10px;
+    top: 30px;
     right: 10px;
     color: #0021A5; /* UF Blue */
     font-weight: bold;

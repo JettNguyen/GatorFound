@@ -87,7 +87,7 @@ const Comment = ({ comment }) => {
                 <div className="replies">
                     {replies.map(reply => (
                         <div key={reply.id} className="reply">
-                            <p><strong>{reply.username}</strong>: {reply.reply}</p> {/* Display username with reply */}
+                            <p><strong>{reply.username}:</strong> {reply.reply}</p> {/* Display username with reply */}
                         </div>
                     ))}
                     <div className="reply-form">

@@ -52,3 +52,14 @@
     cursor: pointer;
     margin-top: 10px;
 }
+
+/* src/components/PostPage.css */
+.search-input {
+    padding: 10px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
