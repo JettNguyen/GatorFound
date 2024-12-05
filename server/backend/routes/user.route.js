@@ -65,7 +65,7 @@ router.post('/login', async(req, res) => {
         res.status(500).json({message: "Login timed out"});
     }
 });
-// Sample route
+// Get user information
 router.get('/', async(req, res) => {
     try{
         const user = await User.find({});
@@ -75,50 +75,6 @@ router.get('/', async(req, res) => {
         res.status(400).json({success: false, message: "Server Error!"});
     }
 });
-
-// router.put('/:id', async(req, res) => {
-//     const {id} = req.params;
-//     const user = req.body;
-//     if (!mongoose.Types.ObjectId.isValid(id)){
-//         return res.status(404).json({success: false, message: "Invalid Information!"});
-//     }
-//     try{
-//         const updatedUser = await User.findByIdAndUpdate(id, user, {new: true});
-//         res.status(200).json({success: true, data: updatedUser});
-//     } catch (error){
-//         console.log("Error in updating user: ", error.message);
-//         res.status(500).json({success: false, message: "Server Error!"});
-//     }
-// });
-
-// router.delete('/:id', async(req, res) =>{
-//     const {id} = req.params;
-//     try{
-//         await User.findByIdAndDelete(id);
-//         res.status(200).json({success: true, message: "User deleted!"});
-//     } catch (error){
-//         console.log("Error in deleting user: ", error.message);
-//         res.status(404).json({success: false, message: "Cannot find product!"});
-//     }
-// });
-
-// router.post('/', async (req,res) => {
-//     const user = req.body;
-//     if (!user.username || !user.password || !user.email){
-//         return res.status(400).json({success: false, message: "Please return all fields"});
-
-//     }
-//     const newUser = new User(user);
-//     try{
-//         await newUser.save();
-//         res.status(201).json({Success: true, data: newUser});
-
-//     }
-//     catch (error){
-//         console.error("Error in creating user: ", error.message);
-//         res.status(500).json({success: false, message: "Server error!"});
-//     }
-// });
 
 
 export default router;

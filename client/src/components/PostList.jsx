@@ -8,6 +8,7 @@ const PostList = ({posts, handleFlag, setAllPosts}) => {
     return (
         <div className="post-list">
             {posts.length > 0 ? (
+                // Map all posts for PostItem function
                 posts.map((post) => (
                     <PostItem key={post._id} post={post} handleFlag={handleFlag} setAllPosts = {setAllPosts} /> // Use a unique key, preferably post.id
                 ))

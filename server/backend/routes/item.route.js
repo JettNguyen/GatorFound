@@ -1,7 +1,6 @@
 import express from "express";
 import Item from "../models/item.model.js";
 import verifyToken from "../middlewares/auth.js"
-// import upload from "./upload_route.js"
 import {S3Client} from '@aws-sdk/client-s3';
 import multer from "multer";
 import multerS3 from "multer-s3";
@@ -10,7 +9,7 @@ import User from "../models/user.model.js";
 
 dotenv.config({path: "../server/.env"});
 const router = express.Router();
-
+// Connect to AWS 
 const s3 = new S3Client({
     region: process.env.AWS_REGION,
     credentials: {
@@ -21,8 +20,7 @@ const s3 = new S3Client({
     console.log("is it this Access Key ID:", process.env.AWS_ACCESS_KEY_ID);  // Debugging step
     console.log("AWS Secret Access Key:", process.env.AWS_SECRET_ACCESS_KEY);  // Debugging step
     console.log("AWS Region:", process.env.AWS_REGION);  // Debugging step
-
-
+//Upload picture to AWS
 const upload = multer({
     storage: multerS3({
       s3,
@@ -37,7 +35,6 @@ const upload = multer({
     }),
   });
  
-  
 // Add new item
 router.post('/', upload.single('itemPhoto'), verifyToken, async (req,res) => {
     const { itemName, itemDescription, postType, itemLocation } = req.body;
@@ -65,7 +62,7 @@ router.post('/', upload.single('itemPhoto'), verifyToken, async (req,res) => {
     }
 });
 
-// Get a list of all items
+// Get items owned by user
 router.get('/', verifyToken, async(req, res) => {
     try{
         const userID = req.user.id;
@@ -77,7 +74,7 @@ router.get('/', verifyToken, async(req, res) => {
     }
 });
 
-// Get a specific item
+// Get all items
 router.get('/all', verifyToken, async(req, res) => {
     try{
         const item = await Item.find();
@@ -89,7 +86,7 @@ router.get('/all', verifyToken, async(req, res) => {
     }
 });
 
-// Update items
+// Update flag feature
 router.patch('/:id/flag', async(req, res) => {
     try {
         const item = await Item.findById(req.params.id);
@@ -113,7 +110,6 @@ router.delete('/:id', verifyToken, async(req, res) =>{
     const id = req.params.id;
     const userID = req.user.id;
     const item = await Item.findById(id);
-    console.log("USER ID FOR DELETING:", userID);
     if (item.userID != userID) {
         res.status(404).json({success: false, message: "This is not your post!"});
     }

@@ -9,6 +9,7 @@ const Login = ({ setIsLoggedIn }) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        // Login connection
         if (!isRegister){
             try{
             const response = await fetch('http://localhost:5000/GatorFound/login', {
@@ -33,7 +34,7 @@ const Login = ({ setIsLoggedIn }) => {
                 alert(error.message);
             }
         }
-        // Sign up
+        // Sign up new user
         else {
             try{
                 const response = await fetch('http://localhost:5000/GatorFound/register', {
@@ -47,7 +48,7 @@ const Login = ({ setIsLoggedIn }) => {
                     throw new Error(data.message || 'Sign up failed! Please provide correct information!');
                 }
                 else {
-                    setIsLoggedIn(false);
+                    setIsLoggedIn(false);  // Ask for login again
                     
                     alert('Sign up successfully! Please sign in again!');
                     window.location.reload();

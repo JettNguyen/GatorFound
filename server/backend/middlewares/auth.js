@@ -1,10 +1,11 @@
 import jwt from 'jsonwebtoken';
-
+// Use jwt token for log in
 const verifyToken = (req, res, next) => {
     const token = req.header('auth-token');
     if (!token) return res.status(401).json({message: "Access Denied"});
 
     try {
+        // Verify token
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         req.user = verified;
         next();
@@ -14,5 +15,3 @@ const verifyToken = (req, res, next) => {
 };
 
 export default verifyToken;
-
-//s2Efv3K9N2yJFVf4

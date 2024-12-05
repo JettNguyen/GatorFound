@@ -41,5 +41,3 @@ const ItemSchema = new mongoose.Schema({
 
 const Item = mongoose.model('Item', ItemSchema);
 export default Item;
-
-//A2hQrSpgt2avZmbd

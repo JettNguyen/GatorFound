@@ -5,7 +5,7 @@ import verifyToken from "../middlewares/auth.js";
 import User from "../models/user.model.js";
 
 const router = express.Router();
-
+//Add new comment route
 router.post('/:itemId/comments', verifyToken, async (req,res) => {
     const userID = req.user.id;
     const {comment} = req.body;
@@ -62,7 +62,7 @@ router.post('/:commentId/replies', verifyToken, async (req,res) => {
     }
 });
 
-// Get a list of all posts
+// Get a list of all comments of the post
 router.get('/:itemId/comments', verifyToken, async(req, res) => {
     const itemId = req.params.itemId;
     try{
@@ -80,7 +80,7 @@ router.get('/:itemId/comments', verifyToken, async(req, res) => {
     }
 });
 
-// Get a list of all posts
+// Get a list of all replies of the comment
 router.get('/:commentId/replies', verifyToken, async(req, res) => {
     const commentId = req.params.commentId;
     try{
@@ -92,18 +92,6 @@ router.get('/:commentId/replies', verifyToken, async(req, res) => {
             username: rep.username,
         }));
         res.status(200).json({success: true, data: replyText});
-    } catch (error){
-        console.log("Error in getting comment: ", error.message);
-        res.status(400).json({success: false, message: "Server Error!"});
-    }
-});
-
-// Get a specific reply
-router.get('/:id', async(req, res) => {
-    try{
-        const comment = await comment.findById(req.params.id);
-        if (!comment) return res.status(404).json({success: false, message: "comment not found!"});
-        res.status(200).json({success: true, data: comment});
     } catch (error){
         console.log("Error in getting comment: ", error.message);
         res.status(400).json({success: false, message: "Server Error!"});

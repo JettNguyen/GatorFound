@@ -4,7 +4,7 @@ import './CommentSection.css';
 
 const CommentSection = ({ itemID, comments, handleCommentSubmit }) => {
     const [newComment, setNewComment] = useState('');
-
+    // Handle new comment connection
     const handleNewComment = async () => {
         
         if (newComment.trim()) {
@@ -24,7 +24,6 @@ const CommentSection = ({ itemID, comments, handleCommentSubmit }) => {
 
                 const updatedComments = await response.json();
                 const comment = updatedComments.data;
-                console.log("New comment is: ", comment);
                 handleCommentSubmit(comment);  // Send updated comments back to the parent
                 setNewComment('');  // Clear the input field
             } catch (error) {
@@ -47,9 +46,9 @@ const CommentSection = ({ itemID, comments, handleCommentSubmit }) => {
 
             <div className="comments-list">
                 {comments.map((com) => {
-                    console.log("Comment: ",com );
 
                 return(
+                    // Get list of comments
                     <Comment key={com.id} comment={com} />
                 );
             })}

@@ -13,7 +13,7 @@ const App = () => {
     const [foundPosts, setFoundPosts] = useState([]); // Initial found posts
     const [userPosts, setUserPosts] = useState([]); // User-created posts
 
-
+    // Fetch all posts calling get method(items)
     const fetchAllPosts = async () => {
         try {
             const response = await fetch('http://localhost:5000/GatorFound/items/all', {
@@ -32,7 +32,7 @@ const App = () => {
         }
     };
 
-    // Fetch posts from backend when logged in
+    // Fetch user post only from backend when logged in
     const fetchPosts = async () => {
         try {
             const response = await fetch('http://localhost:5000/GatorFound/items', {
@@ -50,7 +50,7 @@ const App = () => {
             setUserPosts([]); // Fallback to empty array on error
         }
     };
-
+    // Fetch when log in state change
     useEffect(() => {
         if (isLoggedIn) {
             fetchAllPosts();
@@ -86,19 +86,19 @@ const App = () => {
         await fetchPosts();
         await fetchAllPosts();
     };
-
+    // Handle flag function
     const handleFlag = async() =>{
         await fetchPosts();
         await fetchAllPosts();
     };
-
+    // Set login info in session
     useEffect(() => {
         const storedLoginState = sessionStorage.getItem('isLoggedIn');
         if (storedLoginState === 'true') {
             setIsLoggedIn(true);
         }
     }, []);
-    
+    // Store login info in session
     useEffect(() => {
         sessionStorage.setItem('isLoggedIn', isLoggedIn ? 'true' : 'false');
     }, [isLoggedIn]);

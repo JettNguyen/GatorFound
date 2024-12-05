@@ -6,6 +6,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import {jwtDecode} from 'jwt-decode';
 
 const PostItem = ({ post, handleFlag, setAllPosts }) => {
+    // Get authorized user information
     const token = sessionStorage.getItem('token');
     const decodedToken = token? jwtDecode(token): null;
     const currentUser = decodedToken? decodedToken.username : '';
@@ -15,6 +16,7 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
     const [showCommentSection, setShowCommentSection] = useState(false); // Toggle comments visibility
     const [isFlagged, setIsFlagged] = useState(post.isFlagged); // Manage flagging
     const [isLoading, setIsLoading] = useState(false); // Loading state for comments
+
     // Fetch comments for the post
     const fetchComments = async (id) => {
         if (!id) return; // Guard against undefined itemID
@@ -59,16 +61,16 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
             return !prevState;
         });
     };
-
+    // Re-fetch when item changes
     useEffect(()=>{
         fetchComments(itemID);
         
     }, [itemID]);
-
+    // Call handleNewComment in parent
     const handleNewComment = (comment) => {
         setComments((prevComments) => [...prevComments, comment]);
     };
-
+    // Update flag in backend function
     const toggleFlag = async() => {
         setIsFlagged(!isFlagged);
         // Call backend API to flag/unflag the post
@@ -91,6 +93,7 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
         }
         
     };
+    // Delete post
     const deletePost = async (postId) => {
         const confirmed = window.confirm('Are you sure you want to delete this post?');
 
@@ -104,7 +107,6 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
                 'auth-token': `${sessionStorage.getItem('token')}`,
             },
         });
-        console.log("Deleted item ID is: ", itemID);
         const data = await response.json();
 
         if (response.ok) {
@@ -119,7 +121,6 @@ const PostItem = ({ post, handleFlag, setAllPosts }) => {
         alert('An error occurred while deleting the post');
     }
     };
-    // console.log("USER ID IS: ",sessionStorage.getItem('token').user.id  )
 
     return (
         <div className="post-item">

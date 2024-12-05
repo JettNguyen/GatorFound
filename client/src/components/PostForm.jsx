@@ -9,7 +9,7 @@ const PostForm = ({ postType, handleSubmit, setUserPosts }) => {
     
     const [itemPhoto, setItemPhoto] = useState('');
     const [photoPreview, setPhotoPreview] = useState(null);
-
+    // Preview photo 
     const handlePhotoUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -17,7 +17,7 @@ const PostForm = ({ postType, handleSubmit, setUserPosts }) => {
             setPhotoPreview(URL.createObjectURL(file)); // Create a preview URL
         }
     };
-
+    // Call backend post function to add post
     const onSubmit = async(e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -61,6 +61,7 @@ const PostForm = ({ postType, handleSubmit, setUserPosts }) => {
             alert(error.message);
         }         
     };
+    // Re-fetch post initially
     const fetchPosts = async () => {
         try {
             const response = await fetch('http://localhost:5000/GatorFound/items', {
@@ -70,7 +71,6 @@ const PostForm = ({ postType, handleSubmit, setUserPosts }) => {
                     'auth-token': `${sessionStorage.getItem('token')}`,
                 }
             });
-            console.log("DID I RUN TO HERE?");
             const data = await response.json();
             setUserPosts(data.data); // Update state with the fetched posts
         } catch (error) {

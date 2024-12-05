@@ -11,7 +11,6 @@ const Comment = ({ comment }) => {
     // Fetch comments for the post
     const fetchReplies = async (id) => {
         try {
-            console.log("ITEM ID IS:" , comment.id);
             const response = await fetch(`http://localhost:5000/GatorFound/comments/${id}/replies`, {
                 method: 'GET',
                 headers: {
@@ -49,7 +48,6 @@ const Comment = ({ comment }) => {
     const handleReply = async () => {
         if (newReply.trim()) {
             try {
-                console.log("Reply is: ", newReply);
                 // Send a POST request using fetch to add the reply to the backend
                 const response = await fetch(`http://localhost:5000/GatorFound/comments/${comment.id}/replies`, {
                     method: 'POST',
