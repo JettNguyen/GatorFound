@@ -1,10 +1,8 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## GatorFound: Application Summary
+# GatorFound
 
 **GatorFound** is a comprehensive lost and found service tailored for students and staff at the University of Florida (UF). It provides a dedicated and efficient platform to report and search for lost or found items, replacing less effective public methods like social media. With GatorFound, users can connect in a secure and private way, ensuring quick and reliable item recovery.
+
+## Application Summary
 
 ### Core Features
 
@@ -15,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 5. **Centralized Hub**: The application serves as a single platform for all lost and found-related activities at UF.
 6. **Privacy Focused**: By requiring UFL emails, GatorFound fosters a safer and more private community compared to using public platforms.
 
-### Future Enhancements
+## Future Enhancements
 
 Although the application is already feature-complete, the team envisions further improvements, including:
 - **Admin Dashboard**: A management tool for moderators to oversee posts and comments.
@@ -23,6 +21,12 @@ Although the application is already feature-complete, the team envisions further
 - **Notification System**: Alerts for users about updates on their posts or items they may be interested in.
 - **User Profiles**: A personal dashboard for tracking reported and found items.
 - **Tutorials**: Guidance for new users to navigate the platform effectively.
+
+---
+
+## Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
 
