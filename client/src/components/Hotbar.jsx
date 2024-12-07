@@ -5,12 +5,22 @@ import './Hotbar.css';
 const Hotbar = ({ setView, toggleTheme, theme }) => {
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+    const handleMouseEnter = () => {
+        setShowDropdown(true);
+    };
+
+    const handleMouseLeave = () => {
+        setShowDropdown(false);
     };
 
     return (
-        <div className="hotbar">
+        <div
+        className="hotbar"
+        style={{
+            backgroundColor: theme === 'light' ? '#FAFAFA' : '#0021A5', // Light or dark background
+            color: theme === 'light' ? '#000' : '#FFF', // Adjust text color
+        }}
+    >
             <div className="nav-buttons">
                 <button onClick={toggleTheme} className="theme-toggle">
                     Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
@@ -22,8 +32,12 @@ const Hotbar = ({ setView, toggleTheme, theme }) => {
             </div>
             
 
-            <div className="plus-button-container">
-                <button className="plus-button" onClick={toggleDropdown}>
+            <div 
+                className="plus-button-container"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
+                <button className="plus-button">
                     &#43;
                 </button>
                 {showDropdown && (

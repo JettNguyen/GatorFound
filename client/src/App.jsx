@@ -15,7 +15,9 @@ const App = () => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // Dark-light mode implementation
     
     useEffect(() => {
-        document.body.className = theme; // Apply the theme to the body
+        console.log('THEME CHANGE!');
+        document.body.classList.remove('light', 'dark'); // Remove previous theme class
+        document.body.classList.add(theme);
         localStorage.setItem('theme', theme);
     }, [theme]);
 
@@ -119,7 +121,7 @@ const App = () => {
     return (
         <div className={`App ${theme}`}>
             <Hotbar setView={setView}
-            toggleTheme = {() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            toggleTheme = {() => setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))}
             theme={theme}
             />
             {view === 'home' && <HomePage />} {/* Render HomePage when view is home */}

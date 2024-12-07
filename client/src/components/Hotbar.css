@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    flex-wrap: nowrap; /* Prevent wrapping by default */
+    padding: 10px;
     background-color: #0021A5; /* UF Blue */
     position: sticky;
     top: 0;
@@ -13,9 +14,13 @@
     color: white;
 }
 
-.nav-buttons{
+.nav-buttons {
     display: flex;
-    gap: 250px;
+    gap: 1rem; /* Space between buttons */
+    justify-content: space-between; /* Distribute buttons evenly */
+    width: 100%; /* Ensure the container takes full width */
+    
+    padding-right: 40px; 
 }
 
 .hotbar button {
@@ -26,6 +31,8 @@
     cursor: pointer;
     border-radius: 4px;
     font-size: 1rem;
+    z-index: 2;
+    transition: background-color 0.2s ease;
 }
 
 .hotbar button:hover {
@@ -34,6 +41,7 @@
 
 .plus-button-container {
     position: relative;
+    margin-left: auto; /* Push the plus button to the far right */
 }
 
 .hotbar .plus-button {
@@ -88,18 +96,3 @@
     color: #0021A5;
 }
 
-@media (max-width: 768px) {
-    .hotbar {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-buttons {
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-    .theme-toggle {
-        margin-top: 10px;
-    }
-}
