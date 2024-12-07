@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from './GatorFoundLogo.png';
 
 const Login = ({ setIsLoggedIn }) => {
     const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ const Login = ({ setIsLoggedIn }) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        // Login connection
         if (!isRegister){
             try{
             const response = await fetch('http://localhost:5000/GatorFound/login', {
@@ -20,10 +22,11 @@ const Login = ({ setIsLoggedIn }) => {
             }
             const data = await response.json();
             if (data.token){
-                localStorage.setItem('token', data.token);
+                sessionStorage.setItem('token', data.token);
             // Simulate login or register action
                 setIsLoggedIn(true);
-            } else {
+                sessionStorage.setItem('isLoggedIn', 'true');
+            } else {    
                 alert('Login failed!');
                 }
             } catch (error){
@@ -31,7 +34,7 @@ const Login = ({ setIsLoggedIn }) => {
                 alert(error.message);
             }
         }
-        // Sign up
+        // Sign up new user
         else {
             try{
                 const response = await fetch('http://localhost:5000/GatorFound/register', {
@@ -45,7 +48,7 @@ const Login = ({ setIsLoggedIn }) => {
                     throw new Error(data.message || 'Sign up failed! Please provide correct information!');
                 }
                 else {
-                    setIsLoggedIn(false);
+                    setIsLoggedIn(false);  // Ask for login again
                     
                     alert('Sign up successfully! Please sign in again!');
                     window.location.reload();
@@ -60,6 +63,7 @@ const Login = ({ setIsLoggedIn }) => {
 
     return (
         <div className="login">
+            <img src={logo} alt="Gator Found Logo" className="logo" />
             <h2>{isRegister ? 'Create Account' : 'Login'}</h2>
             <form onSubmit={handleSubmit}>
                 <input

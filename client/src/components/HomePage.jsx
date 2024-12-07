@@ -15,7 +15,7 @@ const HomePage = () => {
             </p>
             {/* Add Slogan */}
             <p className="home-slogan">
-                <em>Where Gators Help Gators Find What's Lost.</em>
+                <em>"Where Gators Help Gators Find What's Lost."</em>
             </p>
         </div>
     );

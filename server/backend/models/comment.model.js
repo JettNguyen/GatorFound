@@ -1,26 +1,21 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
+// Reply Schema: This stores the individual replies
+const ReplySchema = new mongoose.Schema({
+  reply: { type: String },
+  username: {type: String},
+  timestamp: { type: Date, default: Date.now },
+});
+
+
+// Comment Schema: This stores the comments along with references to replies
 const CommentSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User',
-    },
-    status: {
-        type: Boolean,   
-    },
-    itemID:{
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Item',
-    },
-    comments: {
-        type: String,
-        require: true,
-    },
-}, {
-    timestamps: true
-});  
+  comment: { type: String},
+  username: {type: String},
+  timestamp: { type: Date, default: Date.now },
+  comments: [ReplySchema], // Array of replies
+});
 
 const Comment = mongoose.model('Comment', CommentSchema);
-export default Comment;
 
-//A2hQrSpgt2avZmbd
+export default Comment;

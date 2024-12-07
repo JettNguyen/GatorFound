@@ -1,17 +1,19 @@
 // src/components/PostList.jsx
-import React from 'react';
+import React from 'react';  // Add the missing imports
 import './PostList.css';
 import PostItem from './PostItem'; // Import PostItem
 
-const PostList = ({ posts }) => {
+const PostList = ({posts, handleFlag, setAllPosts}) => {
+    
     return (
         <div className="post-list">
             {posts.length > 0 ? (
+                // Map all posts for PostItem function
                 posts.map((post) => (
-                    <PostItem key={post.id} post={post} /> // Use a unique key, preferably post.id
+                    <PostItem key={post._id} post={post} handleFlag={handleFlag} setAllPosts = {setAllPosts} /> // Use a unique key, preferably post.id
                 ))
             ) : (
-                <p>No posts to show.</p>
+                <p className="no-posts">No posts to show!</p>  // Message if there are no posts
             )}
         </div>
     );

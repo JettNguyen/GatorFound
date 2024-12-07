@@ -5,9 +5,11 @@
 }
 
 .toggle-replies {
+    padding: 5px 10px;
     background: none;
     border: none;
-    color: #0021A5; /* UF Blue */
+    background-color: #c75a24;
+    color: #012641; /* UF Blue */
     font-weight: bold;
     cursor: pointer;
     margin-top: 5px;
@@ -43,4 +45,24 @@
     border: none;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.comment strong {
+    color: #0e7ad8; /* A color for the username */
+    margin-right: 5px;
+}
+
+.reply {
+    margin-bottom: 10px;
+    
+}
+
+.reply p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.reply strong {
+    color: #0e7ad8; /* A color for the username */
+    margin-right: 5px;
 }
