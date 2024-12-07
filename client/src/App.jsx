@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Hotbar from './components/Hotbar';
 import HomePage from './components/HomePage'; // Import the HomePage component
@@ -13,7 +13,13 @@ const App = () => {
     const [lostPosts, setLostPosts] = useState(fillerPosts.filter(post => post.postType === 'lost')); // Initial lost posts
     const [foundPosts, setFoundPosts] = useState(fillerPosts.filter(post => post.postType === 'found')); // Initial found posts
     const [userPosts, setUserPosts] = useState([]); // User-created posts
-
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // Dark-light mode implementation
+    
+    useEffect(() => {
+        document.body.className = theme; // Apply the theme to the body
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+    
     // Handle creating a new post
     const handleNewPost = (newPost) => {
         setUserPosts([...userPosts, newPost]);
@@ -31,8 +37,11 @@ const App = () => {
     }
 
     return (
-        <div className="App">
-            <Hotbar setView={setView} />
+        <div className={'App ${theme}'}>
+            <Hotbar setView={setView}
+            toggleTheme = {() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            theme={theme}
+            />
             {view === 'home' && <HomePage />} {/* Render HomePage when view is home */}
             {(view === 'lost' || view === 'found' || view === 'yourPosts' || view === 'createLostPost' || view === 'createFoundPost') && (
                 <PostPage

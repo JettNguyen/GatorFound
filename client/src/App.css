@@ -4,10 +4,21 @@
 body, html {
   margin: 0;
   padding: 0;
-  background-color: rgba(255, 140, 0, 0.12); /* Transparent light orange */
+  /*background-color: rgba(255, 140, 0, 0.12); Transparent light orange */
   font-family: 'Arial', sans-serif; /* Apply a global font */
   height: 100%;
   box-sizing: border-box; /* Ensure padding and margin are included in the element's total width and height */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light {
+  background-color: rgba(255, 140, 0, 0.12);
+  color: #000;
+}
+
+body.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
 }
 
 .App {
@@ -23,6 +34,7 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for the button click */
 }
 
 button:hover {
@@ -43,4 +55,10 @@ input, textarea {
 input:focus, textarea:focus {
   border-color: #0021A5; /* UF Blue on focus */
   outline: none;
+}
+
+body.dark input, body.dark textarea {
+  background-color: #2e2e2e; /* Darker input background in dark mode */
+  color: #f1f1f1; /* Light text color for inputs */
+  border-color: #555; /* Subtle border color for dark mode */
 }
