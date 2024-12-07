@@ -1,16 +1,24 @@
 /* src/App.css or src/index.css */
 
-
-
 /* Apply background to the entire app */
 body, html {
   margin: 0;
   padding: 0;
-  background-color: #021a2d;
+  /*background-color: rgba(255, 140, 0, 0.12); Transparent light orange */
   font-family: 'Arial', sans-serif; /* Apply a global font */
-  color: white;
   height: 100%;
   box-sizing: border-box; /* Ensure padding and margin are included in the element's total width and height */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light {
+  background-color: rgba(255, 140, 0, 0.12);
+  color: #000;
+}
+
+body.dark {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
 }
 
 .App {
@@ -21,17 +29,16 @@ body, html {
 button {
   font-family: inherit;
   padding: 10px 20px;
-  background-color: #e36d32; /* UF Orange */
+  background-color: #FA4616; /* UF Orange */
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  margin: 5px;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for the button click */
 }
 
 button:hover {
-  background-color: #b95624;
+  background-color: #cc3713;
 }
 
 /* General input styling */
@@ -50,27 +57,8 @@ input:focus, textarea:focus {
   outline: none;
 }
 
-/* Center the login container */
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;  /* Horizontally center all children */
-  justify-content: center;  /* Vertically center all children */
-  min-height: 100vh;
-  color: #e36d32;
-  background-color: #021a2d;
-  text-align: center;
+body.dark input, body.dark textarea {
+  background-color: #2e2e2e; /* Darker input background in dark mode */
+  color: #f1f1f1; /* Light text color for inputs */
+  border-color: #555; /* Subtle border color for dark mode */
 }
-
-/* Logo styling */
-.logo {
-  width: 175px;  /* Adjust the width of the logo */
-  height: auto;  /* Maintain aspect ratio */
-  margin-bottom: 10px;  /* Add some space below the logo */
-  display: block;  /* Make the image block-level to remove extra space below */
-  margin-left: auto;  /* Center horizontally */
-  margin-right: auto;  /* Center horizontally */
-}
-
-/* Rest of your styles... */
-

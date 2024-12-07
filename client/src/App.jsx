@@ -12,6 +12,13 @@ const App = () => {
     const [lostPosts, setLostPosts] = useState([]); // Initial lost posts
     const [foundPosts, setFoundPosts] = useState([]); // Initial found posts
     const [userPosts, setUserPosts] = useState([]); // User-created posts
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light'); // Dark-light mode implementation
+    
+    useEffect(() => {
+        document.body.className = theme; // Apply the theme to the body
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
 
     // Fetch all posts calling get method(items)
     const fetchAllPosts = async () => {
@@ -110,8 +117,11 @@ const App = () => {
     }
 
     return (
-        <div className="App">
-            <Hotbar setView={setView} />
+        <div className={`App ${theme}`}>
+            <Hotbar setView={setView}
+            toggleTheme = {() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            theme={theme}
+            />
             {view === 'home' && <HomePage />} {/* Render HomePage when view is home */}
             {(view === 'lost' || view === 'found' || view === 'yourPosts' || view === 'createLostPost' || view === 'createFoundPost') && (
                 <PostPage
